@@ -1,0 +1,24 @@
+{
+  "name": "devportal",
+  "version": "1.0.0",
+  "description": "developer portal using reactJS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/miraEbrahim/devPortal.git"
+  },
+  "keywords": [
+    "reactjs",
+    "bootstrap",
+    "webpack"
+  ],
+  "author": "Mira Ebrahim <jsmirajs@gmail.com> (https://miraebrahim.github.io/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/miraEbrahim/devPortal/issues"
+  },
+  "homepage": "https://github.com/miraEbrahim/devPortal#readme"
+}
