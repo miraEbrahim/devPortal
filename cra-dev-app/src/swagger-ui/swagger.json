@@ -1,0 +1,813 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "taggstar API",
+      "description": "<p>Connect to the API using https://api.taggstar.com<br><br> Using the SSL endpoint is strongly recommended although HTTP is still supported for legacy reasons.<br><br>Notes <ul><li> API responses should not be cached</li> <li> Strings are case sensitive</li><li> URI encode product identifers when passed in the URL</li><li> Timestamps are unix epoch time in milliseconds in UTC</li><li> Obtain the siteKey value from your Customer Success Manager or the Dashboard</li><li>The dashboard https://dashboard.taggstar.com/</li></p>\n \n",
+      "termsOfService": "http://swagger.io/terms/",
+      "contact": {
+        "email": "support@taggstar.com"
+      },
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "2.0.0"
+    },
+    "externalDocs": {
+      "description": "Find out more about taggstar",
+      "url": "http://taggstar.com"
+    },
+    "servers": [
+      {
+        "url": "https://api.taggstar.com/api/v2/key"
+      },
+      {
+        "url": "http://api.taggstar.com/api/v2/key"
+      }
+    ],
+    "paths": {
+      "/{siteKey}/product/visit": {
+        "post": {
+          "tags": [
+            "product visit"
+          ],
+          "summary": "A product visit requests",
+          "description": "A product visit requests mutates the social proof data associated with a product and the visitor profile, and returns the social proof message data (if available) in the response\n",
+          "operationId": "productVisit",
+          "parameters": [
+            {
+              "name": "siteKey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "product visit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/productVisit"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "405": {
+              "description": "Invalid input",
+              "content": {}
+            }
+          },
+          "x-codegen-request-body-name": "visitor"
+        }
+      },
+      "/{siteKey}/category/visit": {
+        "post": {
+          "tags": [
+            "category visit"
+          ],
+          "summary": "A category visit requests",
+          "description": "This method should be called when a page displaying products from a single category is visited.\n",
+          "operationId": "categoryVisit",
+          "parameters": [
+            {
+              "name": "siteKey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "category visit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/categoryVisit"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "405": {
+              "description": "Invalid input",
+              "content": {}
+            }
+          },
+          "x-codegen-request-body-name": "visitor"
+        }
+      },
+      "/{siteKey}/basket/visit": {
+        "post": {
+          "tags": [
+            "basket visit"
+          ],
+          "summary": "A basket visit requests",
+          "description": "the basket visit API method and contains basket object",
+          "operationId": "basketVisit",
+          "parameters": [
+            {
+              "name": "siteKey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "basket visit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/basketVisit"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "405": {
+              "description": "Invalid input",
+              "content": {}
+            }
+          },
+          "x-codegen-request-body-name": "visitor"
+        }
+      },
+      "/{siteKey}/conversion/order": {
+        "post": {
+          "tags": [
+            "conversion Order"
+          ],
+          "summary": "A conversion Order",
+          "description": "conversion Order",
+          "operationId": "conversionOrder",
+          "parameters": [
+            {
+              "name": "siteKey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "basket visit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/conversionOrder"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "405": {
+              "description": "Invalid input",
+              "content": {}
+            }
+          },
+          "x-codegen-request-body-name": "visitor"
+        }
+      },
+      "/{siteKey}/event": {
+        "post": {
+          "tags": [
+            "conversion Order"
+          ],
+          "summary": "event object",
+          "description": "Ask support@taggstar.com for assistance. This method is generally used to provide data for the Add To Basket message type.\n",
+          "operationId": "event",
+          "parameters": [
+            {
+              "name": "siteKey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "basket visit",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/event"
+                }
+              }
+            },
+            "required": true
+          },
+          "responses": {
+            "405": {
+              "description": "Invalid input",
+              "content": {}
+            }
+          },
+          "x-codegen-request-body-name": "visitor"
+        }
+      },
+      "/{sitekey}/products": {
+        "get": {
+          "tags": [
+            "Products"
+          ],
+          "description": "Returns messages for a list of products",
+          "parameters": [
+            {
+              "name": "sitekey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "ids",
+              "in": "query",
+              "description": "a comma delimited list of product id - it's Case sensitive",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "experienceId",
+              "in": "query",
+              "description": "experience name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "experiment",
+              "in": "query",
+              "description": "experiment name",
+              "required": false,
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "id": {
+                    "type": "string"
+                  },
+                  "group": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            {
+              "name": "deviceType",
+              "in": "query",
+              "description": "acceptable inputs desktop, mobile, tablet, application",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "taggEnv",
+              "in": "query",
+              "description": "testing enviroment 'qa'",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "taggFakeData",
+              "in": "query",
+              "description": "QA only, this returns message codes with random social proof data",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "visitorId",
+              "in": "query",
+              "description": "An assigned, unique visitor or user identifier",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "sessionId",
+              "in": "query",
+              "description": "Represents an identifier for a web session, works only with visitor id",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns and object with product and message details for a list of products",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/{sitekey}/product/{productId}": {
+        "get": {
+          "tags": [
+            "Product"
+          ],
+          "summary": "GET product",
+          "description": "Returns messages for a single product",
+          "parameters": [
+            {
+              "name": "sitekey",
+              "in": "path",
+              "description": "site key",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "productId",
+              "in": "path",
+              "description": "one product id - it's Case sensitive",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "deviceType",
+              "in": "query",
+              "description": "acceptable inputs desktop, mobile, tablet, application",
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "experienceId",
+              "in": "query",
+              "description": "experience name",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Returns and object with product and message details for a list of products",
+              "content": {
+                "text/html": {
+                  "schema": {
+                    "$ref": "#/components/schemas/Product"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "Product": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "string",
+              "description": "Required string maximum length 64"
+            },
+            "experienceId": {
+              "type": "string",
+              "description": "Required experience id name"
+            },
+            "category": {
+              "type": "string",
+              "description": "product category"
+            },
+            "code": {
+              "type": "string",
+              "description": "message value"
+            },
+            "message": {
+              "type": "string",
+              "description": "product message"
+            }
+          }
+        },
+        "Products": {
+          "type": "object",
+          "properties": {
+            "result": {
+              "type": "object",
+              "properties": {
+                "moduleRunId": {
+                  "type": "string"
+                },
+                "eventGroupId": {
+                  "type": "string"
+                },
+                "success": {
+                  "type": "boolean"
+                }
+              }
+            },
+            "product": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer"
+                }
+              }
+            },
+            "category": {
+              "type": "string",
+              "description": "product category"
+            },
+            "code": {
+              "type": "string",
+              "description": "message value"
+            },
+            "message": {
+              "type": "string",
+              "description": "product message"
+            }
+          }
+        },
+        "productVisit": {
+          "type": "object",
+          "properties": {
+            "experience": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                }
+              }
+            },
+            "product": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "integer",
+                  "format": "int32"
+                }
+              }
+            },
+            "visitor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "xml": {
+            "name": "product Visit"
+          }
+        },
+        "categoryVisit": {
+          "required": [
+            "category",
+            "experience",
+            "products"
+          ],
+          "type": "object",
+          "properties": {
+            "category": {
+              "type": "string"
+            },
+            "experience": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                }
+              }
+            },
+            "products": {
+              "type": "array",
+              "xml": {
+                "name": "products",
+                "wrapped": true
+              },
+              "items": {
+                "type": "string"
+              }
+            },
+            "visitor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "xml": {
+            "name": "catgeory Visit"
+          }
+        },
+        "basketVisit": {
+          "required": [
+            "experience"
+          ],
+          "type": "object",
+          "properties": {
+            "experience": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                }
+              }
+            },
+            "visitor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              }
+            },
+            "basket": {
+              "type": "object",
+              "properties": {
+                "lineItems": {
+                  "type": "array",
+                  "xml": {
+                    "name": "lineItems",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "string"
+                      },
+                      "unitPrice": {
+                        "type": "integer"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "xml": {
+            "name": "basket Visit"
+          }
+        },
+        "conversionOrder": {
+          "required": [
+            "experience"
+          ],
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "experience": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                }
+              }
+            },
+            "visitor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              }
+            },
+            "order": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "totalPrice": {
+                  "type": "integer"
+                },
+                "orderItems": {
+                  "type": "array",
+                  "xml": {
+                    "name": "lineItems",
+                    "wrapped": true
+                  },
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": {
+                        "type": "string"
+                      },
+                      "quantity": {
+                        "type": "string"
+                      },
+                      "unitPrice": {
+                        "type": "integer"
+                      },
+                      "category": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "xml": {
+            "name": "conversion order"
+          }
+        },
+        "event": {
+          "required": [
+            "experience"
+          ],
+          "type": "object",
+          "properties": {
+            "currency": {
+              "type": "string"
+            },
+            "experience": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "experiment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "group": {
+                  "type": "string"
+                }
+              }
+            },
+            "visitor": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "sessionId": {
+                  "type": "string"
+                }
+              }
+            },
+            "event": {
+              "type": "object",
+              "properties": {
+                "eventGroupId": {
+                  "type": "string"
+                },
+                "category": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "data": {
+                  "type": "object",
+                  "properties": {
+                    "lable": {
+                      "type": "string"
+                    },
+                    "value": {
+                      "type": "integer"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "xml": {
+            "name": "event"
+          }
+        },
+        "Error": {
+          "type": "object",
+          "properties": {
+            "productId": {
+              "type": "string"
+            },
+            "experienceId": {
+              "type": "string"
+            },
+            "category": {
+              "type": "string"
+            },
+            "code": {
+              "type": "string"
+            },
+            "data": {
+              "type": "string"
+            },
+            "message": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
