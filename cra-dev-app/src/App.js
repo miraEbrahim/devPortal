@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { hot } from 'react-hot-loader';
-
+import '../node_modules/bootstrap/scss/bootstrap.scss';
+import './App.scss';
+// Put any other imports below so that CSS from your
+// components takes precedence over default styles.
 
 class App extends Component {
   state = {
